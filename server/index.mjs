@@ -1,0 +1,22 @@
+import fastify              from 'fastify'
+import fastifyCors          from '@fastify/cors';
+import fastifyStatic        from '@fastify/static';
+import path                 from 'path';
+import { WebSocketServer }  from 'ws';
+import { fileURLToPath }    from 'url';
+import { request }          from 'http';
+
+const webSocketServer  = new WebSocketServer({ port: 5556 });
+const __filename       = fileURLToPath(import.meta.url);
+const __dirname        = path.dirname(__filename);
+const server           = fastify({logger: true});
+
+server.register(fastifyCors);
+
+server.listen({port: 5555})
+.then(() => {
+    console.log('success');
+})
+.catch(err => {
+    console.log(err)
+})
