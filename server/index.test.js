@@ -1,12 +1,13 @@
 const removeElement  = require("./index.js");
 
 test('Item is visible according to the array', () => {
-    const array     = [1, 2, 3, 4, 5, 6, 7];
-    const item      = 2;
-    const length    = array.length;
+    const array         = [1, 2, 3, 4, 5, 6, 7];
+    const item          = 2;
+    const length        = array.length;
 
     expect(removeElement(array, item)).toBeUndefined();
-    expect(array.length).not.toEqual(length);
+    expect(array).not.toHaveLength(length);
+    expect(array).not.toContain(item);
 })
 
 test('Item is NOT visible according to the array', () => {
@@ -15,7 +16,7 @@ test('Item is NOT visible according to the array', () => {
     const length    = array.length;
 
     expect(removeElement(array, item)).toBeUndefined();
-    expect(array.length).toEqual(length);
+    expect(array).toHaveLength(length);
 })
 
 test('First parameter is not an array => error', () => {
